@@ -1,0 +1,29 @@
+{
+  "name": "Avalanche / Go & EVM Dev Environment",
+  "image": "mcr.microsoft.com/devcontainers/go:latest", // Start with a Go image
+  
+  "features": {
+    // Add Node.js for EVM tools and web3 libraries
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts" 
+    },
+    // Add Rust for Foundry (EVM tooling)
+    "ghcr.io/devcontainers/features/rust:1": {
+      "version": "latest"
+    }
+  },
+
+  "postCreateCommand": "curl -L https://foundry.paradigm.xyz | bash && $HOME/.foundry/bin/foundryup && go install github.com/ava-labs/avalanchego@latest",
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "golang.go",
+        "NomicFoundation.hardhat-solidity",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+  
+  "forwardPorts": [9650, 4321]
+}
